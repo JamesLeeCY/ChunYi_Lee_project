@@ -1,0 +1,50 @@
+# mriqc
+datdir=/bml/Data/Bank5/APEDBB/drawing_bayesian_balls
+docker run -it --rm -v ${datdir}/rawdata:/data:ro \
+    -v ${datdir}/derivatives/mriqc:/out \
+    -v ${datdir}/mriqc_work:/work \
+    -u $( id -u ):$( id -g ) \
+    poldracklab/mriqc:latest \
+    /data /out participant -w /work \
+    --participant-label \
+	s111 s112 s113 s114 s116 s117 s118 s119 s120 \
+	s121 s122 s123 s124 s125 s126 s128 s129 s130 \
+	s132 s133 s134 \
+	s511 s512 s513 s514 s515 s516 s517 s518 s519 s520 \
+	s521 s522 s523 s524 s525 s526 s527 s528 s529 s530 \
+	s531 s532 s533 s534 s535
+
+# setting freesurfer licence
+export FS_LICENSE=$FREESURFER_HOME/license.txt
+fmriprep-docker ./rawdata ./derivatives participant
+
+#fmriprep
+datdir=/bml/Data/Bank5/APEDBB/drawing_bayesian_balls
+docker run --rm -it -v ${datdir}/rawdata:/data:ro \
+	-v ${datdir}/derivatives:/out \
+	-v ${datdir}/fmriprep_work:/work \
+	-u $( id -u ):$( id -g ) \
+	nipreps/fmriprep:latest \
+	/data /out participant -w /work \
+	--participant-label \
+	s111 s112 s113 s114 s116 s117 s118 s119 s120 \
+	s121 s122 s123 s124 s125 s126 s128 s129 s130 \
+	s132 s133 s134 \
+	s511 s512 s513 s514 s515 s516 s517 s518 s519 s520 \
+	s521 s522 s523 s524 s525 s526 s527 s528 s529 s530 \
+	s531 s532 s533 s534 s535 s536 s537 s538 s540 \
+	s541 s542 \
+	--fs-license-file /work/FS_license.txt
+
+#fmriprep with another skull-strip-template
+datdir=/bml/Data/Bank5/APEDBB/drawing_bayesian_balls
+docker run --rm -it -v ${datdir}/rawdata_test:/data:ro \
+	-v ${datdir}/derivatives_test:/out \
+	-v ${datdir}/temptestwork:/work \
+	-u $( id -u ):$( id -g ) \
+	nipreps/fmriprep:latest \
+	/data /out participant -w /work \
+	--participant-label p005 \
+	--skull-strip-template MNI152NLin2009cAsym \
+	--fs-license-file /work/FS_license.txt
+

@@ -1,0 +1,30 @@
+# BIDS heudiconv
+# https://reproducibility.stanford.edu/bids-tutorial-series-part-2a/
+
+docker pull nipy/heudiconv:latest
+docker run --rm -it -v /bml/Data/Bank4/Forest_Therapy/MRI_data:/base nipy/heudiconv:latest -d /base/BXF_MRI/DICOM/BXF0{subject}/*/*.IMA -o /base/BXF_MRI/Nifti/ -f convertall -s 01 -c none --overwrite
+
+docker run --rm -it -v /bml/Data/Bank4/Forest_Therapy/MRI_data:/base nipy/heudiconv:latest -d /base/BXF_MRI/sourcedata/BXF0{subject}/*/*.IMA -o /base/BXF_MRI/Nifti -f convertall -s 08 -c none --overwrite
+
+# SeriesDescription: sequence name
+
+cp /bml/Data/Bank4/Forest_Therapy/MRI_data/Nifti/.heudiconv/01/info/dicominfo.tsv /bml/Data/Bank4/Forest_Therapy/MRI_data/
+
+        
+docker run --rm -it -v /bml/Data/Bank4/Forest_Therapy/MRI_data:/base nipy/heudiconv:latest -d /base/BXF_MRI/DICOM/BXF0{subject}/*/*.IMA -o /base/BXF_MRI/Nifti/ -f /base/BXF_MRI/Nifti/code/heuristic.py -s 01 -c dcm2niix -b --overwrite
+
+docker run --rm -it -v /bml/Data/Bank4/Forest_Therapy/MRI_data:/base nipy/heudiconv:latest -d /base/BXF_MRI/DICOM/BXF0{subject}/*/*.IMA -o /base/BXF_MRI/Nifti/ -f /base/BXF_MRI/Nifti/code/heuristic.py -s 02 03 -c dcm2niix -b --overwrite
+
+docker run --rm -it -v /bml/Data/Bank4/Forest_Therapy/MRI_data:/base nipy/heudiconv:latest -d /base/BXF_MRI/DICOM/BXF0{subject}/*/*.IMA -o /base/BXF_MRI/Nifti/ -f /base/BXF_MRI/Nifti/code/heuristic.py -s 04 05 06 07 -c dcm2niix -b --overwrite
+
+#20230508
+
+docker run --rm -it -v /bml/Data/Bank4/Forest_Therapy/MRI_data:/base nipy/heudiconv:latest -d /base/BXF_MRI/sourcedata/BXF0{subject}/*/*.IMA -o /base/BXF_MRI/Nifti/ -f /base/BXF_MRI/derivatives/code/heuristic.py -s 09 10 11 -c dcm2niix -b --overwrite
+
+docker run --rm -it -v /bml/Data/Bank4/Forest_Therapy/MRI_data:/base nipy/heudiconv:latest -d /base/BXF_MRI/sourcedata/BXF0{subject}/*/*.IMA -o /base/BXF_MRI/Nifti/ -f /base/BXF_MRI/derivatives/code/heuristic.py -s 12 13 14 15 16 17 18 19 20 -c dcm2niix -b --overwrite
+
+docker run --rm -it -v /bml/Data/Bank4/Forest_Therapy/MRI_data:/base nipy/heudiconv:latest -d /base/BXF_MRI/sourcedata/BXF0{subject}/*/*.IMA -o /base/BXF_MRI/Nifti/ -f /base/BXF_MRI/derivatives/code/heuristic.py -s 21 22 23 24 25 26 27 28 29 30 -c dcm2niix -b --overwrite
+
+docker run --rm -it -v /bml/Data/Bank4/Forest_Therapy/MRI_data:/base nipy/heudiconv:latest -d /base/BXF_MRI/sourcedata/BXF0{subject}/*/*.IMA -o /base/BXF_MRI/Nifti/ -f /base/BXF_MRI/derivatives/code/heuristic.py -s 31 32 33 34 35 36 37 38 39 -c dcm2niix -b --overwrite
+
+docker run --rm -it -v /bml/Data/Bank4/Forest_Therapy/MRI_data:/base nipy/heudiconv:latest -d /base/BXF_MRI/sourcedata/BXF0{subject}/*/*.IMA -o /base/BXF_MRI/Nifti/ -f /base/BXF_MRI/derivatives/code/heuristic.py -s 08 -c dcm2niix -b --overwrite
