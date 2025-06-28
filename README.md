@@ -84,7 +84,7 @@ The project was swiftly initiated by Chun-Yi Lee, about the naturalistic paradig
 
 ## Conclusion and acknowledgement
 
- would like to thank the Brain Hack School 2023 for organizing this course and for their support. The course has been highly beneficial, and I would like to express my appreciation to organizer and TA for all your support!
+I would like to thank the Brain Hack School 2023 for organizing this course and for their support. The course has been highly beneficial, and I would like to express my appreciation to organizer and TA for all your support!
  
  ## References
  
